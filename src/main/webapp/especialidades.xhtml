@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/BasicTemplate.xhtml">
+	<ui:define name="content">
+	
+<script type="text/javascript">
+PrimeFaces.locales['es'] = {
+    closeText: 'Cerrar',
+    prevText: 'Anterior',
+    nextText: 'Siguiente',
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+    weekHeader: 'Semana',
+    firstDayOfWeek: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: '',
+    timeOnlyTitle: 'Sólo hora',
+    timeText: 'Tiempo',
+    hourText: 'Hora',
+    minuteText: 'Minuto',
+    secondText: 'Segundo',
+    currentText: 'Fecha actual',
+    ampm: false,
+    month: 'Mes',
+    week: 'Semana',
+    day: 'Día',
+    allDayText: 'Todo el día'
+};
+</script>
+		
+		<p:growl id="growl" life="2000" showDetail="true" />
+	
+	    <p:panel id="panelEspecialidades" header="Especialidades"
+	    	footer="Total: #{especialidadView.especialidades.size()}" widgetVar="panelEspecialidades">
+	    	
+	    	<p:commandButton value="Listar" icon="fa fa-list"
+	    		action="#{especialidadView.init()}" update=":panelEspecialidades" />
+			
+	    	<p:dataTable var="esp" value="#{especialidadView.especialidades}" rows="4" paginator="true">
+	    		<p:column headerText="ID" width="10">
+	    			<h:outputText value="#{esp.idEspecialidad}"/>
+	    		</p:column>
+	    		<p:column headerText="Nombres" width="130">
+	    			<h:outputText value="#{esp.descripcion}"/>
+	    		</p:column>
+	    		
+	    		<p:column headerText="OPCIONES" width="10">
+	    			<p:commandButton icon="fa fa-id-card"
+	    				action="#"
+	    				oncomplete="PF('dialog').show();"
+	    				update="dialogId"
+	    			/>
+	    			<p:commandButton icon="fa fa-id-card"
+	    				action="#"
+	    				oncomplete="PF('dialog').show();"
+	    				update="dialogId"
+	    			/>
+	    		</p:column>
+	    		    		   		   	
+	    	</p:dataTable>
+	    	
+	    	
+	    	<p:dialog id="dialogId" header="Nuevo" widgetVar="dialog" 
+	    		modal="true" style="position: absolute" width="600px" height="400px">
+	    		<h:panelGrid columns="2" cellpadding="3" style="margin-bottom:200px">
+					<h:outputText value="Foto: "/>
+					<img src="img/medico.jpg" style="border: 1px solid #42a5f5; width: 300px; height: 200px;" />
+	    			<h:outputText value="Nombres: " />
+	    			<p:outputLabel value="#{medicoView.medico.nombreCompleto}" />	    			
+	    			<h:outputText value="Formación profesional: "/>
+	    			<p:outputLabel value="#{medicoView.medico.formacion}" />
+	    		</h:panelGrid>
+	    	
+	    	</p:dialog>
+	    </p:panel>
+	</ui:define>
+</ui:composition>
+</html>

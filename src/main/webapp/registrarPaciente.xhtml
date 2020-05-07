@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<style>
+	.ui-g{
+		margin-top: 100px;
+		margin-left: 60px;
+	}
+</style>
+</h:head>
+
+<h:body>
+	<div class="ui-g">
+		<div class="ui-g-4" />
+		<div class="ui-g-4">
+			<h:form prependId="false" style="width: max-content;">
+				<p:fieldset legend="Registrar paciente">
+					<p:messages />
+					<h:panelGrid columns="2" cellpadding="3" style="margin-bottom:10px">
+						<h:outputText value="Apellido Paterno"/>
+	    			<p:inputText value="#{pacienteView.paciente.apePat}" required="true"/>
+	    			<h:outputText value="Apellido Materno"/>
+	    			<p:inputText value="#{pacienteView.paciente.apeMat}" required="true"/>
+	    			<h:outputText value="Nombres"/>
+	    			<p:inputText value="#{pacienteView.paciente.names}" required="true"/>
+	    			<h:outputText value="Dni"/>
+	    			<p:inputText value="#{pacienteView.paciente.dni}" required="true"/>
+	    			<h:outputText value="Dirección"/>
+	    			<p:inputText value="#{pacienteView.paciente.direccion}" required="true"/>
+	    			<h:outputText value="Correo"/>
+	    			<p:inputText value="#{pacienteView.paciente.email}" required="true"/>
+	    			<h:outputText value="Contraseña"/>
+	    			<p:password value="#{pacienteView.paciente.password}" feedback="true" inline="true" required="true"/>
+	    			<p:commandButton value="Registrar" action="#{pacienteView.registrarPaciente}" />
+	    		</h:panelGrid>
+					<a href="login.xhtml" style="position: relative; left: 180px; color: #42a5f5;">Cancelar</a>
+				</p:fieldset>
+			</h:form>
+		</div>
+		<div class="ui-g-4" />
+	</div>
+
+</h:body>
+</html>

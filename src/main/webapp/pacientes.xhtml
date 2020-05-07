@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/BasicTemplate.xhtml">
+	<ui:define name="content">
+	
+<script type="text/javascript">
+PrimeFaces.locales['es'] = {
+    closeText: 'Cerrar',
+    prevText: 'Anterior',
+    nextText: 'Siguiente',
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+    weekHeader: 'Semana',
+    firstDayOfWeek: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: '',
+    timeOnlyTitle: 'Sólo hora',
+    timeText: 'Tiempo',
+    hourText: 'Hora',
+    minuteText: 'Minuto',
+    secondText: 'Segundo',
+    currentText: 'Fecha actual',
+    ampm: false,
+    month: 'Mes',
+    week: 'Semana',
+    day: 'Día',
+    allDayText: 'Todo el día'
+};
+</script>
+		
+		<p:growl id="growl" life="2000" showDetail="true" />
+	
+	    <p:panel id="panelPaciente" header="Gestionar Paciente"
+	    	footer="Total: #{pacienteView.pacientes.size()}" widgetVar="panelPaciente">
+	    	
+	    	<p:commandButton value="Listar" icon="fa fa-list"
+	    		action="#{pacienteView.init()}" update=":panelPaciente" />
+			
+	    	<p:dataTable var="pac" value="#{pacienteView.pacientes}" rows="4" paginator="true">
+	    		<p:column headerText="ID" width="10">
+	    			<h:outputText value="#{pac.idPaciente}"/>
+	    		</p:column>
+	    		<p:column headerText="Nombres" width="130">
+	    			<h:outputText value="#{pac.nombreCompleto}"/>
+	    		</p:column>
+	    		<p:column headerText="Dni"  width="60">
+	    			<h:outputText value="#{pac.dni}"/>
+	    		</p:column>
+	    		<p:column headerText="Dirección"  width="80">
+	    			<h:outputText value="#{pac.direccion}"/>
+	    		</p:column>
+	    		<p:column headerText="Usuario"  width="100">
+	    			<h:outputText value="#{pac.email}"/>
+	    		</p:column>
+	    		<p:column headerText="Contraseña"  width="80">
+	    			<h:outputText value="#{pac.password}"/>
+	    		</p:column>
+	    		<p:column headerText="OPCIONES" width="90">
+	    			<p:commandButton icon="fa fa-refresh"
+	    				action="#{pacienteView.buscar(pac.idPaciente)}"
+	    				oncomplete="PF('dialog').show();"
+	    				update="dialogId"
+	    			/>
+	    			
+	    			<p:commandButton icon="fa fa-remove"
+	    				action="#{pacienteView.eliminar(pac.idPaciente)}"
+	    				update=":growl :panelPaciente"/>
+	    		</p:column>		    		   		   	
+	    	</p:dataTable>
+	    	
+	    	
+	    	<p:dialog id="dialogId" header="Nuevo" widgetVar="dialog" 
+	    		modal="true" style="position: absolute" >
+	    		<h:panelGrid columns="2" cellpadding="3" style="margin-bottom:200px">
+	    			<h:outputText value="Apellido Paterno"/>
+	    			<p:inputText value="#{pacienteView.paciente.apePat}" />
+	    			<h:outputText value="Apellido Materno"/>
+	    			<p:inputText value="#{pacienteView.paciente.apeMat}" />
+	    			<h:outputText value="Nombres"/>
+	    			<p:inputText value="#{pacienteView.paciente.names}" />
+	    			<h:outputText value="Dni"/>
+	    			<p:inputText value="#{pacienteView.paciente.dni}" />
+	    			<h:outputText value="Dirección"/>
+	    			<p:inputText value="#{pacienteView.paciente.direccion}" />
+	    			<h:outputText value="Correo"/>
+	    			<p:inputText value="#{pacienteView.paciente.email}" />
+	    			<h:outputText value="Contraseña"/>
+	    			<p:inputText value="#{pacienteView.paciente.password}" />
+	    			<p:commandButton value="Registrar" action="#{pacienteView.registrar}"
+	    				update=":growl :panelPaciente" oncomplete="PF('dialog').hide();" />
+	    		</h:panelGrid>
+	    	
+	    	</p:dialog>
+	    </p:panel>
+	</ui:define>
+</ui:composition>
+</html>

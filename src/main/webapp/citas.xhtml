@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/BasicTemplate.xhtml">
+	<ui:define name="content">
+
+		<script type="text/javascript">
+			PrimeFaces.locales['es'] = {
+				closeText : 'Cerrar',
+				prevText : 'Anterior',
+				nextText : 'Siguiente',
+				monthNames : [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+						'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+						'Noviembre', 'Diciembre' ],
+				monthNamesShort : [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+						'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+				dayNames : [ 'Domingo', 'Lunes', 'Martes', 'Miércoles',
+						'Jueves', 'Viernes', 'Sábado' ],
+				dayNamesShort : [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie',
+						'Sab' ],
+				dayNamesMin : [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
+				weekHeader : 'Semana',
+				firstDayOfWeek : 1,
+				isRTL : false,
+				showMonthAfterYear : false,
+				yearSuffix : '',
+				timeOnlyTitle : 'Sólo hora',
+				timeText : 'Tiempo',
+				hourText : 'Hora',
+				minuteText : 'Minuto',
+				secondText : 'Segundo',
+				currentText : 'Fecha actual',
+				ampm : false,
+				month : 'Mes',
+				week : 'Semana',
+				day : 'Día',
+				allDayText : 'Todo el día'
+			};
+		</script>
+
+		<p:growl id="growl" life="2000" showDetail="true" />
+
+		<p:panel id="panelCitas" header="Gestionar Citas"
+			footer="Total: #{citaView.citas.size()}" widgetVar="panelCitas">
+
+			<p:commandButton value="Listar" icon="fa fa-list"
+				action="#{citaView.init()}" update=":panelCitas" />
+
+			<p:commandButton value="Nuevo" icon="fa fa-plus"
+				oncomplete="PF('dialog').show();" />
+
+			<p:dataTable var="cita" value="#{citaView.citas}" rows="6" paginator="true">
+				<p:column headerText="ID" width="20">
+					<h:outputText value="#{cita.idCita}" />
+				</p:column>
+				<p:column headerText="FEC. CITA" width="90">
+					<h:outputText value="#{cita.fechaCita}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="MÉDICO">
+					<h:outputText value="#{cita.medico.nombreCompleto}" />
+				</p:column>
+				<p:column headerText="PACIENTE">
+					<h:outputText value="#{cita.paciente.nombreCompleto}" />
+				</p:column>
+
+				<p:column headerText="MOTIVO">
+					<h:outputText value="#{cita.motivo}" />
+				</p:column>
+				<p:column headerText="HORA" width="60">
+					<h:outputText value="#{cita.hora}" />
+				</p:column>
+				
+				<p:column headerText="OPCIONES" width="100">
+					<p:commandButton icon="fa fa-refresh"
+						action="#{citaView.buscar(cita.idCita)}"
+						oncomplete="PF('dialog').show();" update="dialogId" />
+
+					<p:commandButton icon="fa fa-remove"
+						action="#{citaView.eliminar(cita.idCita)}"
+						update=":growl :panelCitas" />
+				</p:column>
+			</p:dataTable>
+
+
+			<p:dialog id="dialogId" header="Nuevo" widgetVar="dialog"
+				modal="true" style="position: absolute">
+				<h:panelGrid columns="2" cellpadding="3" style="margin-bottom:200px">
+					<!-- 					<h:outputText value="Stock"/> -->
+					<!-- 	    			<p:inputText value="#{citaView.cita.motivo}" />	    	 -->
+					<h:outputText value="Fecha de Registro" />
+					<p:datePicker id="fechaCita" value="#{citaView.cita.fechaCita}"
+						showIcon="true" pattern="yyyy/MM/dd" locale="es">
+						<f:convertDateTime type="#{fechaCita}" pattern="yyyy/MM/dd" />
+					</p:datePicker>
+					
+					<h:outputText value="Médico" />
+					<p:selectOneMenu value="#{citaView.cita.medico.idMedico}">
+						<f:selectItems var="med" value="#{medicoView.medicos}"
+							itemLabel="#{med.nombreCompleto}" itemValue="#{med.idMedico}">
+						</f:selectItems>
+					</p:selectOneMenu>
+					
+					<h:outputText value="Paciente: " />
+<!--  					<p:inputText type="hidden" value="#{citaView.cita.paciente.idPaciente}" />	 -->
+ 					<p:selectOneMenu value="#{citaView.cita.paciente.idPaciente}">
+						<f:selectItems var="pac" value="#{pacienteView.pacientes}"
+							itemLabel="#{pac.nombreCompleto}" itemValue="#{pac.idPaciente}">
+						</f:selectItems>
+					</p:selectOneMenu> 
+					
+					<h:outputText value="Motivo" />
+					<p:inputText value="#{citaView.cita.motivo}" />
+					
+					<h:outputText value="Hora" />
+					<p:selectOneMenu value="#{citaView.cita.hora}">
+						<f:selectItems var="hor" value="#{horarioView.horarios}"
+							itemLabel="#{hor.hora}" itemValue="#{hor.hora}">
+						</f:selectItems>
+					</p:selectOneMenu>
+					
+					<p:commandButton value="Registrar" action="#{citaView.registrar}"
+						update=":growl :panelCitas" oncomplete="PF('dialog').hide();" />
+				</h:panelGrid>
+
+			</p:dialog>
+
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

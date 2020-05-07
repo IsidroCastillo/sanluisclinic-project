@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+
+	<p:menu toggleable="true">
+		<p:submenu label="Operaciones">
+			<p:menuitem value="Registrar Cita" action="citas"
+				icon="pi pi-save" />
+<!-- 			<p:menuitem value="Anular venta" action="#{menuView.update}" -->
+<!-- 				icon="pi pi-refresh" /> -->
+		</p:submenu>
+		<p:submenu label="Gestionar">
+			<p:menuitem value="Médicos" action="medicos" icon="pi pi-times" />
+			<p:menuitem value="Especialidades" action="especialidades" ajax="false"
+				icon="pi pi-times" />
+		</p:submenu>
+		<p:submenu label="Reportes">
+			<p:menuitem value="Reporte Medicos" action="reporte"
+				icon="pi pi-home" />
+			<p:menuitem value="Reporte Citas"
+				icon="pi pi-home" />
+		</p:submenu>
+		<p:submenu label="Mi perfil">
+			<p:menuitem value="Editar información" action="pacientes"
+				 icon="pi pi-home" />
+			<p:menuitem value="Cerrar sesión" action="login" icon="pi pi-home" />
+		</p:submenu>
+	</p:menu>
+
+</body>
+</html>
