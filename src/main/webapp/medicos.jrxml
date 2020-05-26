@@ -46,57 +46,66 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<staticText>
-				<reportElement x="118" y="36" width="100" height="30" uuid="127a0765-ed5b-4d15-8d9b-f8bb3d51e1b2"/>
-				<text><![CDATA[3]]></text>
+				<reportElement x="168" y="0" width="277" height="29" uuid="5cdf8c31-a8c8-41fa-ae2d-df25390d55cc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Monospaced" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Médicoss]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="58" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<staticText>
-				<reportElement x="41" y="0" width="100" height="30" uuid="c5f5495a-bb32-4eaa-8de8-9f5dece5686e">
+				<reportElement x="41" y="0" width="100" height="15" uuid="c5f5495a-bb32-4eaa-8de8-9f5dece5686e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5bae614c-18cd-4373-b1a0-390913063ff0"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nombres]]></text>
+				<text><![CDATA[NOMBRES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="170" y="0" width="100" height="30" uuid="d34edfb4-0112-418c-b2cd-cc0118e62b51">
+				<reportElement x="200" y="0" width="100" height="15" uuid="d34edfb4-0112-418c-b2cd-cc0118e62b51">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="804aeade-cd66-4548-af4c-560b31e2e483"/>
 				</reportElement>
-				<text><![CDATA[dni]]></text>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="274" y="0" width="100" height="30" uuid="7cb0b025-f30b-41ed-b3cd-b2225803307f">
+				<reportElement x="337" y="0" width="163" height="15" uuid="7cb0b025-f30b-41ed-b3cd-b2225803307f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="54e4f998-669c-4ec4-ad28-919be4cddff5"/>
 				</reportElement>
-				<text><![CDATA[email]]></text>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORREO ELECTRÓNICO]]></text>
 			</staticText>
 		</band>
-	</columnHeader>
+	</pageHeader>
 	<detail>
-		<band height="42" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="41" y="2" width="177" height="18" uuid="4cba8d4e-f2dc-4f71-a3a1-3ad023152440">
+				<reportElement x="41" y="2" width="219" height="18" uuid="4cba8d4e-f2dc-4f71-a3a1-3ad023152440">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5bae614c-18cd-4373-b1a0-390913063ff0"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="170" y="2" width="100" height="30" uuid="2f9f9376-f552-44b9-aea2-39def0fdaf89">
+				<reportElement x="200" y="2" width="100" height="18" uuid="2f9f9376-f552-44b9-aea2-39def0fdaf89">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="804aeade-cd66-4548-af4c-560b31e2e483"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="274" y="3" width="100" height="30" uuid="0b9269f7-90a4-4778-a995-9dac5c3dbfaf">
+				<reportElement x="337" y="3" width="152" height="17" uuid="0b9269f7-90a4-4778-a995-9dac5c3dbfaf">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="54e4f998-669c-4ec4-ad28-919be4cddff5"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
@@ -104,7 +113,16 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="46" splitType="Stretch">
+			<line>
+				<reportElement x="41" y="-27" width="453" height="1" printWhenGroupChanges="names" uuid="4e79cf79-7984-4adc-b864-e71d9c30e2ac">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>

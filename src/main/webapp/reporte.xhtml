@@ -53,13 +53,13 @@
 			<h1>JSF + Jasper Reports Exports</h1>
 			<h:form>
 				<h:commandButton value="Exportar PDF"
-					actionListener="#{personaBean.exportarPDF}" />
-				<h:commandButton value="Exportar Excel"
-					actionListener="#{personaBean.exportarExcel}" />
+					actionListener="#{medicoView.exportarPDF}" />
 				<h:commandButton value="Exportar PPT"
-					actionListener="#{personaBean.exportarPPT}" />
+					actionListener="#{medicoView.exportarPPT}" />
 				<h:commandButton value="Exportar DOC"
-					actionListener="#{personaBean.exportarDOC}" />
+					actionListener="#{medicoView.exportarDOC}" />
+					<h:commandButton value="Exportar Excel"
+					actionListener="#{medicoView.exportarExcel}" />
 				<h:commandButton value="Ver PDF"
 					actionListener="#{medicoView.verPDF}" />
 			</h:form>
